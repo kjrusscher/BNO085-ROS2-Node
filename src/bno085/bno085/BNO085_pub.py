@@ -9,7 +9,7 @@ from adafruit_bno08x.i2c import BNO08X_I2C
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Imu
-from geometry_msgs.msg import Vector3
+from std_msgs.msg import Header
 
 linear_accel = [0,0,0] # x, y, z  (in m/s^2)
 gyro = [0,0,0] # x, y, z  (in rad/s)
