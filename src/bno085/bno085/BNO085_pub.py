@@ -11,8 +11,6 @@ from rclpy.node import Node
 from sensor_msgs.msg import Imu
 from std_msgs.msg import Header
 
-linear_accel = [0,0,0] # x, y, z  (in m/s^2)
-gyro = [0,0,0] # x, y, z  (in rad/s)
 
 class BNO085_Publisher(Node):
     def __init__(self):
@@ -47,9 +45,9 @@ class BNO085_Publisher(Node):
 
     def read_and_send_imu_data(self):
         # get the Angular Velocity (gryo data) of the robot
-        gyro[0], gyro[1], gyro[2] = self.imu.gyro 
+        gyro_x, gyro_y, gyro_z = self.imu.gyro 
         # get the Linear Acceleration of the robot
-        linear_accel[0], linear_accel[1], linear_accel[2] = self.imu.linear_acceleration  
+        linear_accel_x, linear_accel_y, linear_accel_z = self.imu.linear_acceleration  
 
         #create messages to publish
         imu_data_msg = Imu()
@@ -60,12 +58,12 @@ class BNO085_Publisher(Node):
         # TODO: Double check that this is true
         # IMU X right, Y forward, Z up
         # ROS Y left, X forward, Z up
-        imu_data_msg.angular_velocity.x = gyro[0]
-        imu_data_msg.angular_velocity.y = gyro[1]
-        imu_data_msg.angular_velocity.z = gyro[2]
-        imu_data_msg.linear_acceleration.x = linear_accel[0]
-        imu_data_msg.linear_acceleration.y = linear_accel[1]
-        imu_data_msg.linear_acceleration.z = linear_accel[2]
+        imu_data_msg.angular_velocity.x = gyro_x
+        imu_data_msg.angular_velocity.y = gyro_y
+        imu_data_msg.angular_velocity.z = gyro_z
+        imu_data_msg.linear_acceleration.x = linear_accel_x
+        imu_data_msg.linear_acceleration.y = linear_accel_y
+        imu_data_msg.linear_acceleration.z = linear_accel_z
         imu_data_msg.orientation.x = 0.0
         imu_data_msg.orientation.y = 0.0
         imu_data_msg.orientation.z = 0.0
