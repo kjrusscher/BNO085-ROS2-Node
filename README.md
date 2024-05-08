@@ -1,5 +1,10 @@
 # BNO085-ROS2-Node
-A ROS2 Compatible node that interfaces with the BNO085 IMU sensor via python
+A ROS2 Compatible node that interfaces with the BNO085 IMU sensor via python.
+The node publishes the linear acceleration (gravity compensated) and angular velocity on /imu/data. 
+
+Build with `colcon build` in root of repository.
+Source `./install/setup.sh`.
+Run with `ros2 run bno085 bno085_publisher`.
 
 ## Requirements
 **TODO: Added Requirements.txt**
