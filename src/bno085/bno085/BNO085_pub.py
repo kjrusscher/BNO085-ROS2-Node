@@ -16,7 +16,7 @@ class BNO085_Publisher(Node):
         # create the publisher for the IMU data
         self.imu_data_publisher = self.create_publisher(
             Imu, # ROS Message
-            'IMU_Data',  # Topic
+            'imu/data',  # Topic
             10)
         
         # IMU sensor (BNO085)
