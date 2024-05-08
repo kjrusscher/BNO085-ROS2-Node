@@ -1,4 +1,5 @@
 import time
+import warnings
 
 from adafruit_extended_bus import ExtendedI2C as I2C
 import adafruit_bno08x
@@ -27,6 +28,7 @@ class BNO085_Publisher(Node):
         self.read_send_timer = self.create_timer(0.01, self.read_and_send_imu_data)
 
     def init_sensor(self):
+        warnings.filterwarnings("ignore", message="I2C frequency is not settable in python, ignoring!", category=RuntimeWarning)
         i2c = I2C(3)
         try:
             self.imu = BNO08X_I2C(i2c)
