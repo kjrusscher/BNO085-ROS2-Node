@@ -53,9 +53,9 @@ class BNO085_Publisher(Node):
         imu_data_msg.header.stamp = self.get_clock().now().to_msg()
         imu_data_msg.header.frame_id = "bno085_frame"
 
-        # TODO: Double check that this is true
-        # IMU X right, Y forward, Z up
-        # ROS Y left, X forward, Z up
+        # TODO [DONE]: Double check that this is true
+        # IMU X forward, Y left, Z up
+        # ROS X forward, Y left, Z up
         imu_data_msg.angular_velocity.x = gyro_x
         imu_data_msg.angular_velocity.y = gyro_y
         imu_data_msg.angular_velocity.z = gyro_z
