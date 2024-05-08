@@ -53,7 +53,9 @@ class BNO085_Publisher(Node):
 
         #create messages to publish
         imu_data_msg = Imu()
-        robot_ori_euler_msg = Vector3()
+        imu_data_msg.header = Header()
+        imu_data_msg.header.stamp = self.get_clock().now().to_msg()
+        imu_data_msg.header.frame_id = "bno085_frame"
 
         # TODO: Double check that this is true
         # IMU X right, Y forward, Z up
