@@ -27,8 +27,8 @@ class BNO085_Publisher(Node):
         self.imu = None
         self.init_sensor()
 
-        # create timer for reading and publishing data (@ rate of ~4hz)
-        self.read_send_timer = self.create_timer(0.25, self.read_and_send_imu_data)
+        # create timer for reading and publishing data (@ rate of ~100hz)
+        self.read_send_timer = self.create_timer(0.01, self.read_and_send_imu_data)
 
     def init_sensor(self):
         i2c = I2C(3)
