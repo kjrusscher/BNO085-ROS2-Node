@@ -29,6 +29,7 @@ class BNO085_Publisher(Node):
 
     def init_sensor(self):
         warnings.filterwarnings("ignore", message="I2C frequency is not settable in python, ignoring!", category=RuntimeWarning)
+        print("Supressing warning \"I2C frequency is not settable in python, ignoring!\"")
         i2c = I2C(3)
         try:
             self.imu = BNO08X_I2C(i2c)
