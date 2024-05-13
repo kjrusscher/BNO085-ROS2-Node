@@ -39,6 +39,7 @@ class BNO085_Publisher(Node):
             
 
         # enable the reports from the IMU
+        self.imu.enable_feature(adafruit_bno08x.BNO_REPORT_ROTATION_VECTOR) # For orientation_quat and Euler (heading) data
         self.imu.enable_feature(adafruit_bno08x.BNO_REPORT_LINEAR_ACCELERATION) # Linear acceleration data
         self.imu.enable_feature(adafruit_bno08x.BNO_REPORT_GYROSCOPE) # For Angular Velocity data
 
@@ -49,6 +50,8 @@ class BNO085_Publisher(Node):
         gyro_x, gyro_y, gyro_z = self.imu.gyro 
         # get the Linear Acceleration of the robot
         linear_accel_x, linear_accel_y, linear_accel_z = self.imu.linear_acceleration  
+        # get the quaternion representation of the robot's orientation
+        orientation_quat_x, orientation_quat_y, orientation_quat_z, orientation_quat_w = self.imu.quaternion
 
         #create messages to publish
         imu_data_msg = Imu()
@@ -65,10 +68,10 @@ class BNO085_Publisher(Node):
         imu_data_msg.linear_acceleration.x = linear_accel_x
         imu_data_msg.linear_acceleration.y = linear_accel_y
         imu_data_msg.linear_acceleration.z = linear_accel_z
-        imu_data_msg.orientation.x = 0.0
-        imu_data_msg.orientation.y = 0.0
-        imu_data_msg.orientation.z = 0.0
-        imu_data_msg.orientation.w = 0.0
+        imu_data_msg.orientation.x = orientation_quat_x
+        imu_data_msg.orientation.y = orientation_quat_y
+        imu_data_msg.orientation.z = orientation_quat_z
+        imu_data_msg.orientation.w = orientation_quat_w
         
         #TODO: Look into getting the IMU's Covariance values
         # Following the recommendation here: https://robotics.stackexchange.com/questions/22756/what-would-be-a-way-to-estimate-imu-noise-covariance-matrix
