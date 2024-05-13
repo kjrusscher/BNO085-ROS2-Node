@@ -74,15 +74,15 @@ class BNO085_Publisher(Node):
         # Following the recommendation here: https://robotics.stackexchange.com/questions/22756/what-would-be-a-way-to-estimate-imu-noise-covariance-matrix
         # we set the covariance values to a small values (just in case they are needed) on the diagonal
         # For now the covariances are set to -1 as sign that they can be ignored.
-        imu_data_msg.orientation_covariance[0] = -1
-        # imu_data_msg.orientation_covariance[4] = 0.01
-        # imu_data_msg.orientation_covariance[8] = 0.01
-        imu_data_msg.angular_velocity_covariance[0] = -1
+        #imu_data_msg.orientation_covariance[0] = -1
+        #imu_data_msg.orientation_covariance[4] = 0.01
+        #imu_data_msg.orientation_covariance[8] = 0.01
+        #imu_data_msg.angular_velocity_covariance[0] = -1
         # imu_data_msg.angular_velocity_covariance[4] = 0.01
         # imu_data_msg.angular_velocity_covariance[8] = 0.01
-        imu_data_msg.linear_acceleration_covariance[0] = -1
-        # imu_data_msg.linear_acceleration_covariance[4] = 0.01
-        # imu_data_msg.linear_acceleration_covariance[8] = 0.01
+        imu_data_msg.linear_acceleration_covariance[0] = 0.0004
+        imu_data_msg.linear_acceleration_covariance[4] = 0.0002
+        imu_data_msg.linear_acceleration_covariance[8] = 0.0003
 
         self.imu_data_publisher.publish(imu_data_msg)
 
